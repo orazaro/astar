@@ -1,10 +1,9 @@
-#$Id: Makefile,v 1.1 2011/10/15 08:24:05 oraz Exp $
+PROGRAMS = game15
+TESTS =
 
-CPP 			= $(wildcard *.cpp)
-PROGRAMS	= $(CPP:%.cpp=%) 
-CFILES 			= $(wildcard *.c)
-PROGRAMC	= $(CFILES:%.c=%) 
-LIBRARIES	= 
+OBJECTS     = g15_state.o
+HFILES      = $(OBJECTS:%.o=%.h)
+LIBRARIES	= cppunit
 
 CC			= gcc
 CXX			= g++
@@ -12,9 +11,15 @@ CFLAGS		+= -Wall -O3
 CPPFLAGS		+= -Wall -O2
 LDFLAGS		= $(LIBRARIES:%=-l%)
 
-.PHONY: all clean
+.PHONY: all clean test
 
-all: $(PROGRAMS) $(PROGRAMC) 
+all: $(PROGRAMS)
+
+game15: game15.o $(OBJECTS) $(HFILES)
+	$(CXX) $(OBJECTS) $< $(LDFLAGS) -o $@ 
+
+%.o: %.cpp %.h
+	$(CXX) -c $(CPPFLAGS) $<
 
 %: %.cpp
 	$(CXX) $(CPPFLAGS) $^ -o $@
@@ -23,5 +28,5 @@ all: $(PROGRAMS) $(PROGRAMC)
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm -f *.o *.a $(PROGRAMS) $(PROGRAMC)
+	rm -f *.o *.a $(PROGRAMS)
 
