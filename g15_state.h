@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <string>
+#include <list>
 
 static const int gWidth = 4;
+
 class State {
     static const int m_w = gWidth;
     static const int m_h = gWidth;

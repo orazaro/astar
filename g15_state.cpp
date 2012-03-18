@@ -1,5 +1,13 @@
 #include "g15_state.h"
 
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <stdexcept>
+#include <cmath>
+
+static bool manhattan = true;
+
 State::State()
 {
     m_matrix = std::vector < std::vector<int> >(m_w , std::vector<int>(m_h,0));

@@ -21,7 +21,6 @@ $Id: game15-astar.cpp,v 1.4 2011/10/16 18:36:52 oraz Exp $
 
 #include "g15_state.h"
 
-static bool manhattan = true;
 static double gGreediness = 1.05;
 
 class Node {
