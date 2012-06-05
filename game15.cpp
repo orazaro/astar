@@ -303,11 +303,13 @@ int main(int argc, char* argv[])
         path.push_front(cur);
         cur=cur->parent();
     }
-    if(path.size() < 10) {
+    if(path.size() < 1000) {
         std::cout << "A* search result:" << std::endl;
         for(std::list<Node*>::iterator it = path.begin(); it != path.end(); ++it)
         {
+            system("clear");
             (*it)->print();
+            sleep(1);
         }
     }
     std::cout << "A* search result: " << path.size() - 1 << " moves in the path." << std::endl;
